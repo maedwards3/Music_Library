@@ -1,8 +1,7 @@
 import React from 'react';
-
+import './songTable.css';
 
 function DisplaySongs(props) {
-    console.log("props", props)
     return (
         <table className="table table-dark">
             <thead>
@@ -12,6 +11,7 @@ function DisplaySongs(props) {
                     <th className="header">Artist</th>
                     <th className="header">Genre</th>
                     <th className="header">Release Date</th>
+                    <th className="header">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +23,7 @@ function DisplaySongs(props) {
                     <td>{song.artist}</td>
                     <td>{song.genre}</td>
                     <td>{song.release_date}</td>
+                    <button className="button">Delete</button>
                 </tr>
             )}) }
             </tbody>
