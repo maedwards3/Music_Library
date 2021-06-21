@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DisplaySongs from './SongTable/songTable';
+import AddSong from './AddSongForm/addSongForm';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
         this.getAllSongs();
     }
 
-    async getAllSongs() {
+     getAllSongs = async ()=> {
         try{
             let response = await axios.get('http://127.0.0.1:8000/music/');
             this.setState({
@@ -31,7 +32,9 @@ class App extends Component {
     render(){
         return (
             <div>
-                <DisplaySongs songs={this.state.songs}/>
+                <AddSong />
+                <DisplaySongs getAllSongs={this.getAllSongs} songs={this.state.songs}/>
+                
             </div>
         );
     }

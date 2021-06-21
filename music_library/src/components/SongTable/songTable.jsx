@@ -1,7 +1,18 @@
+import axios from 'axios';
 import React from 'react';
 import './songTable.css';
 
 function DisplaySongs(props) {
+
+    const deleteSongData = (id) => {
+        axios.delete(`http://127.0.0.1:8000/music/${id}/`)
+        .then(response => {
+            console.log(response);
+            console.log(response.data);
+            props.getAllSongs()
+        });
+    }
+
     return (
         <table className="table table-dark">
             <thead>
@@ -23,7 +34,7 @@ function DisplaySongs(props) {
                     <td>{song.artist}</td>
                     <td>{song.genre}</td>
                     <td>{song.release_date}</td>
-                    <button className="button">Delete</button>
+                    <button onClick={() => deleteSongData(song.id)} className="button">Delete</button>
                 </tr>
             )}) }
             </tbody>
