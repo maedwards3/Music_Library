@@ -14,7 +14,7 @@ function DisplaySongs(props) {
     }
 
     return (
-        <table className="table table-dark">
+        <table className="table table-dark table-hover">
             <thead>
                 <tr>
                     <th className="header">Song Title</th>

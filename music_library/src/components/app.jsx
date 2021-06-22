@@ -16,7 +16,7 @@ class App extends Component {
         this.getAllSongs();
     }
 
-     getAllSongs = async ()=> {
+    getAllSongs = async ()=> {
         try{
             let response = await axios.get('http://127.0.0.1:8000/music/');
             this.setState({
@@ -32,7 +32,7 @@ class App extends Component {
     render(){
         return (
             <div>
-                <AddSong />
+                <AddSong updateTable={this.getAllSongs}/>
                 <DisplaySongs getAllSongs={this.getAllSongs} songs={this.state.songs}/>
                 
             </div>
