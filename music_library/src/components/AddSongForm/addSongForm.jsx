@@ -71,14 +71,21 @@ class AddSong extends React.Component {
         }
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         debugger
         console.log("submit is being triggered")
         event.preventDefault();
-        this.addNewSong();
-        this.props.updateTable();
+        await this.addNewSong();
         alert(`Title: ${this.state.title} Artist: ${this.state.artist} Album: ${this.state.album} 
             Genre: ${this.state.genre} Release Date: ${this.state.release_date}`)
+        await this.props.updateTable();
+        this.setState({
+            title: '',
+            artist: '',
+            album: '',
+            release_date: '',
+            genre: ''
+        })
     };
 
     render() {
@@ -86,27 +93,27 @@ class AddSong extends React.Component {
         <form onSubmit={(event) => this.handleSubmit(event)}>
             <div >
                 <label for="title">Title: </label>
-                <input type="text" name="title" onChange={this.handleChange} value={this.state.title}/><br></br>
+                <input type="text" name="title" onChange={this.handleChange} value={this.state.title}/><br />
                 {this.state.errors.title ? <p style={{color:'red'}}>{this.state.errors.title}</p> : ''}
             </div>
             <div>
                 <label for="artist">Artist: </label>
-                <input type="text" name="artist" onChange={this.handleChange} value={this.state.artist}/><br></br>
+                <input type="text" name="artist" onChange={this.handleChange} value={this.state.artist}/><br />
                 {this.state.errors.artist ? <p style={{color:'red'}}>{this.state.errors.artist}</p> : ''}
             </div>
             <div>
                 <label for="album">Album: </label>
-                <input type="text" name="album" onChange={this.handleChange} value={this.state.album}/><br></br>
+                <input type="text" name="album" onChange={this.handleChange} value={this.state.album}/><br />
                 {this.state.errors.album ? <p style={{color:'red'}}>{this.state.errors.album}</p> : ''}
             </div>
             <div>
                 <label for="genre">Genre: </label>
-                <input type="text" name="genre" onChange={this.handleChange} value={this.state.genre}/><br></br>
+                <input type="text" name="genre" onChange={this.handleChange} value={this.state.genre}/><br />
                 {this.state.errors.genre ? <p style={{color:'red'}}>{this.state.errors.genre}</p> : ''}
             </div>
             <div>
                 <label for="release_date">Release Date: </label>
-                <input type="text" name="release_date" onChange={this.handleChange} placeholder="YYYY-MM-DD" value={this.state.release_date}/><br></br>
+                <input type="text" name="release_date" onChange={this.handleChange} placeholder="YYYY-MM-DD" value={this.state.release_date}/><br />
                 {/* {this.state.errors.release_date ? <p style={{color:'red'}}>{this.state.errors.release_date}</p> : ''} */}
             </div>
             <div>
