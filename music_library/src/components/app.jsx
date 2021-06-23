@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DisplaySongs from './SongTable/songTable';
 import AddSong from './AddSongForm/addSongForm';
+import NavBar from './NavBar/navBar';
+import FilterBar from './FilterForm/filterBar';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -18,7 +20,7 @@ class App extends Component {
 
     getAllSongs = async ()=> {
         try{
-            let response = await axios.get('http://127.0.0.1:8000/music/');
+            let response = await axios.get(`http://127.0.0.1:8000/music/`);
             this.setState({
                 songs: response.data
             });
@@ -32,9 +34,10 @@ class App extends Component {
     render(){
         return (
             <div>
+                <NavBar />
                 <AddSong updateTable={this.getAllSongs}/>
                 <DisplaySongs getAllSongs={this.getAllSongs} songs={this.state.songs}/>
-                
+                <FilterBar filterSongs={this.state.songs}/>
             </div>
         );
     }
